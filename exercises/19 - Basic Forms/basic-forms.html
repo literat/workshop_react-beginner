@@ -1,0 +1,40 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.14.6/babel.js"></script>
+  <script type="text/babel">
+    function UsernameForm() {
+      // const usernameInputRef = React.useRef();
+      function handleSubmit(event) {
+        // 🦉 prevents full page refresh
+        event.preventDefault()
+        console.log(event.target)
+        // ⚠️ please not use this
+        // 🦉 breaks encapsulation of the component
+        // const username = document.querySelector('input').value
+        // 🦉 rely on order
+        // const username = event.target[0].value;
+        // 🦉 rely on order too
+        // const username = event.target.elements[0].value;
+        // 🦉 this is the simplest way
+        const username = event.target.elements.usernameInput.value
+        // 🦉 if you do not need to use ref, do not use it
+        // const username = usernameInputRef.current.value;
+        alert(`You entered: ${username}`)
+      }
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="usernameInput">Username:</label>
+            <input /*ref={usernameInputRef}*/ id="usernameInput" type="text" />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      )
+    }
+
+    ReactDOM.render(<UsernameForm />, document.getElementById('root'))
+  </script>
+</body>
