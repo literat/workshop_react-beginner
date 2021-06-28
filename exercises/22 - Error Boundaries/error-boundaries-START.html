@@ -1,0 +1,31 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.14.6/babel.js"></script>
+  <script type="text/babel">
+    // 👨‍💻 add react error boundary and wrap the error code
+
+    // ⚠️ if we clicks here, React will crash and we will see stacktrace in console
+    function Bomb() {
+      throw new Error('💥 CABOOM 💥')
+    }
+
+    function App() {
+      const [explode, setExplode] = React.useState(false)
+      return (
+        <div>
+          <div>
+            <button onClick={() => setExplode(true)}>💣</button>
+          </div>
+          <div>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              {explode ? <Bomb /> : 'Push the button Max!'}
+            </ErrorBoundary>
+          </div>
+        </div>
+      )
+    }
+    ReactDOM.render(<App />, document.getElementById('root'))
+  </script>
+</body>
