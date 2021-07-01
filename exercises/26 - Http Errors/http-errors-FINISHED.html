@@ -2,14 +2,14 @@
   <div id="root"></div>
   <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.16.4/babel.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.14.6/babel.js"></script>
   <!--
     The next two scripts don't appear in the videos.
     To learn why these two scripts were added, read:
     https://github.com/kentcdodds/beginners-guide-to-react/issues/3
   -->
   <script src="https://unpkg.com/msw@0.30.0/lib/umd/index.js"></script>
-  <script src="/pokemon-api.js"></script>
+  <script src="../pokemon-api.js"></script>
 
   <script type="text/babel">
     function PokemonInfo({pokemonName}) {
@@ -76,6 +76,7 @@
     }
 
     function fetchPokemon(name) {
+      // nam do typo
       const pokemonQuery = `
         query PokemonInfo($name: String) {
           pokemon(name: $name) {
@@ -84,7 +85,6 @@
             name
             attacks {
               special {
-                // nam do typo
                 name
                 type
                 damage
